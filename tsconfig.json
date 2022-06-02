@@ -6,6 +6,7 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "strictNullChecks": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -21,7 +22,11 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    /* Additional Checks */
+    "noUnusedLocals": true,                      /* Report errors on unused locals. */
+    "noUnusedParameters": true,                  /* Report errors on unused parameters. */
+    "noUncheckedIndexedAccess": true,            /* Include 'undefined' in index signature results */
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
