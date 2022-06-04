@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <img width="40" src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg" alt="Angular logo"/>
+    <span>task</span>
+    <span class="example-spacer"></span>
+    <ng-container *ngIf="(isHandset$ | async) === false">
+        <ng-container *ngTemplateOutlet="navigation" class="row-menu"></ng-container>
+    </ng-container>
+    <button type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            *ngIf="isHandset$ | async"
+            [matMenuTriggerFor]="menu">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+    <ng-container *ngTemplateOutlet="navigation"></ng-container>
+</mat-menu>
+
+<ng-template #navigation>
+    <mat-nav-list [class.row-menu]="(isHandset$ | async) === false">
+        <!--    <a mat-list-item href="#">Link 1</a>
+            <a mat-list-item href="#">Link 2</a>
+            <a mat-list-item href="#">Link 3</a>-->
+        <a mat-button href="#">111</a>
+        <a mat-button href="#">222</a>
+        <a mat-button routerLink="#">333</a>
+        <a mat-button [routerLink]="'#'">444</a>
+    </mat-nav-list>
+</ng-template>
