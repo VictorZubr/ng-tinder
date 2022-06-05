@@ -1,24 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subscriber } from 'rxjs';
-import { Person } from './defs/person';
-
-const persons: Array<Person> = [
-  {
-    id: '01', name: 'Ann', age: 18, sex: 'female', status: { isCandidate: false, isFavorite: false },
-  },
-  {
-    id: '02', name: 'Catrin', age: 23, sex: 'female', status: { isCandidate: false, isFavorite: false },
-  },
-  {
-    id: '03', name: 'Erica', age: 20, sex: 'female', status: { isCandidate: true, isFavorite: false },
-  },
-];
+import { Person } from '../defs/person';
+import { SettingsService } from '../content/settings/settings.service';
+import { getPersons } from './utils';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  persons = persons;
+  persons = getPersons(this.settingsService.settings);
+
+  constructor(private settingsService: SettingsService) {
+  }
 
   public getPersons(): Observable<Array<Person>> {
     return of(this.persons.slice());

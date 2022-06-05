@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Person } from '../defs/person';
-import { SearchService } from '../search.service';
+import { Person } from '../../defs/person';
+import { SearchService } from './search.service';
 
 @Component({
   selector: 'app-search',

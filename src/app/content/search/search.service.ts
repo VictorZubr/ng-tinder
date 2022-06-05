@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Person } from './defs/person';
-import { ApiService } from './api.service';
+import { Person } from '../../defs/person';
+import { ApiService } from '../../api/api.service';
 
 @Injectable({
   providedIn: 'root',

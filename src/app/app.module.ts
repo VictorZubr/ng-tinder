@@ -13,9 +13,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HeaderComponent } from './header/header.component';
-import { SearchComponent } from './search/search.component';
-import { SettingsComponent } from './settings/settings.component';
+import { HeaderComponent } from './content/header/header.component';
+import { SearchComponent } from './content/search/search.component';
+import { SettingsComponent } from './content/settings/settings.component';
 
 @NgModule({
   declarations: [
