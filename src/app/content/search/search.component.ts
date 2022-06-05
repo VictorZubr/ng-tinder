@@ -14,7 +14,13 @@ export class SearchComponent implements OnInit {
 
   public person: Person | undefined;
 
-  constructor(private searchService: SearchService) {}
+  public personsLoading = false;
+
+  public photoLoading = false;
+
+  constructor(
+    private searchService: SearchService,
+  ) {}
 
   public like(person: Person) {
     this.searchService.like(person.id).subscribe((updatedPerson) => {
@@ -31,6 +37,7 @@ export class SearchComponent implements OnInit {
 
   public skipPerson() {
     this.person = this.persons.pop();
+    this.photoLoading = true;
   }
 
   public isMatch(): boolean {
@@ -38,10 +45,12 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.personsLoading = true;
     this.searchService.getPersons().subscribe((persons) => {
       this.persons = persons;
       this.total = persons.length;
       this.skipPerson();
+      this.personsLoading = false;
     });
   }
 }

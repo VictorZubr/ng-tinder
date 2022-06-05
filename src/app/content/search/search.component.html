@@ -1,30 +1,37 @@
 <mat-card class="progress-card">
-
   <mat-card-header>
     <mat-card-title>{{total-persons.length}}/{{total}}</mat-card-title>
   </mat-card-header>
 
   <mat-progress-bar [value]="(total - persons.length) / total * 100"></mat-progress-bar>
-
 </mat-card>
 
 <section class="card-section">
+  <ng-container *ngIf="!personsLoading; else loading">
     <mat-card *ngIf="person" class="person-card">
 
-    <mat-card-content [class.match]="isMatch()">
-      <img src="https://www.elsoldenayarit.mx/site/images/notas/47479__20161024195731_117gatos.jpg"/>
-    </mat-card-content>
+      <mat-card-content [class.match]="isMatch()" [class.photo-loading]="photoLoading">
+        <img width="100%" height="300px" [src]="person.photoUrl" (load)=" photoLoading = false">
+        <mat-spinner class="photo-loader" diameter="100" *ngIf="photoLoading"></mat-spinner>
+      </mat-card-content>
 
-    <mat-card-header>
-      <mat-card-title>{{person.name}}, {{person.age}}</mat-card-title>
-<!--      <mat-card-subtitle>Age {{person.age}}</mat-card-subtitle>-->
-    </mat-card-header>
+      <mat-card-header>
+        <mat-card-title>{{person.name}}, {{person.age}}</mat-card-title>
+      </mat-card-header>
 
-    <mat-card-actions>
-      <button [disabled]="isMatch()" mat-raised-button color="primary" (click)="like(person)">Like</button>
-      <button *ngIf="!isMatch()"mat-raised-button color="primary" (click)="disLike(person)">Dislike</button>
-      <button *ngIf="isMatch()" mat-raised-button color="primary" (click)="skipPerson()">Ok</button>
-    </mat-card-actions>
+      <mat-card-actions>
+        <button [disabled]="isMatch() || photoLoading" mat-raised-button color="primary" (click)="like(person)">Like</button>
+        <button *ngIf="!isMatch()" [disabled]="isMatch() || photoLoading" mat-raised-button color="primary" (click)="disLike(person)">Dislike</button>
+        <button *ngIf="isMatch()" [disabled]="photoLoading" mat-raised-button color="primary" (click)="skipPerson()">Ok</button>
+      </mat-card-actions>
 
-  </mat-card>
+    </mat-card>
+  </ng-container>
 </section>
+
+<ng-template #loading>
+  <mat-card class="loader-card">
+    <mat-card-title>Loading persons...</mat-card-title>
+    <mat-spinner diameter="100"></mat-spinner>
+  </mat-card>
+</ng-template>
