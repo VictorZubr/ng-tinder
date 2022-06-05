@@ -8,15 +8,21 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
+import { SearchComponent } from './search/search.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    SearchComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +35,8 @@ import { HeaderComponent } from './header/header.component';
     MatIconModule,
     MatListModule,
     MatMenuModule,
+    MatCardModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

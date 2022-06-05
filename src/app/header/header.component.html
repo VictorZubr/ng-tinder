@@ -20,12 +20,7 @@
 
 <ng-template #navigation>
     <mat-nav-list [class.row-menu]="(isHandset$ | async) === false">
-        <!--    <a mat-list-item href="#">Link 1</a>
-            <a mat-list-item href="#">Link 2</a>
-            <a mat-list-item href="#">Link 3</a>-->
-        <a mat-button href="#">111</a>
-        <a mat-button href="#">222</a>
-        <a mat-button routerLink="#">333</a>
-        <a mat-button [routerLink]="'#'">444</a>
+        <a mat-button routerLink="/search">Search</a>
+        <a mat-button routerLink="/settings">Settings</a>
     </mat-nav-list>
 </ng-template>

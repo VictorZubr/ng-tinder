@@ -1,0 +1,45 @@
+.progress-card {
+  margin: 10px;
+}
+.card-section {
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.person-card {
+  width: 50%;
+  max-width: 500px;
+  min-width: 200px;
+
+  .match {
+    position: relative;
+
+    img {
+      opacity: 0.3;
+    }
+    &::after {
+      content: 'You got match !!!';
+      font-size: 2em;
+      font-weight: 700;
+      width: 100%;
+      position: absolute;
+      top: 30%;
+      left: 0;
+      text-align: center;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
