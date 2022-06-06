@@ -3,6 +3,7 @@
   max-width: 500px;
   min-width: 200px;
 }
+
 .person-card {
   .mat-card-content {
     &.photo-loading {
@@ -27,6 +28,7 @@
     img {
       opacity: 0.3;
     }
+
     &::after {
       content: 'You got match !!!';
       font-size: 2em;

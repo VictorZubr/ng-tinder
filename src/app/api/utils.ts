@@ -17,7 +17,7 @@ export const getPersons = (settings: Settings): Array<Person> => Array
     age: getRandom(settings.ageMin, settings.ageMax),
     sex: settings.searchSex,
     status: {
-      isCandidate: Math.random() > 0.8,
+      isCandidate: Math.random() > 0.5,
       isFavorite: false,
     },
   }));

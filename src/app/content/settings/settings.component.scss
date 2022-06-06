@@ -1,9 +1,9 @@
 :host {
-  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 50px;
 }
+
 .settings-card {
   width: 50%;
   max-width: 500px;
@@ -28,5 +28,11 @@
 }
 
 fieldset {
-  margin-top: 8px;
+  &:not(:first-child) {
+    margin-top: 16px;
+  }
+
+  legend {
+    font-size: 1.3em;
+  }
 }

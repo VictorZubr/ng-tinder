@@ -1,24 +1,27 @@
-.progress-card {
-  margin: 10px;
-}
-
 .card-section {
-  height: 80vh;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .mat-card-actions {
   display: flex;
   justify-content: space-between;
+
+  &.restart-actions {
+    justify-content: end;
+  }
 }
 
 .loader-card {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .mat-spinner {
+    margin-top: 20px;
+  }
 }
 
 .restart-card {
