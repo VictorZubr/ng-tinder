@@ -1,0 +1,50 @@
+:host {
+  width: 50%;
+  max-width: 500px;
+  min-width: 200px;
+}
+.person-card {
+  .mat-card-content {
+    &.photo-loading {
+      position: relative;
+
+      img {
+        opacity: 0.3;
+      }
+
+      .photo-loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform:translate(-50%, -50%);
+      }
+    }
+  }
+
+  .match {
+    position: relative;
+
+    img {
+      opacity: 0.3;
+    }
+    &::after {
+      content: 'You got match !!!';
+      font-size: 2em;
+      font-weight: 700;
+      width: 100%;
+      position: absolute;
+      top: 30%;
+      left: 0;
+      text-align: center;
+    }
+  }
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}

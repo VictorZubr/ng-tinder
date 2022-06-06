@@ -8,24 +8,7 @@
 
 <section class="card-section">
   <ng-container *ngIf="!personsLoading; else loadingTpl">
-    <mat-card *ngIf="person; else restartTpl" class="person-card">
-
-      <mat-card-content [class.match]="isMatch()" [class.photo-loading]="photoLoading">
-        <img width="100%" height="300px" [src]="person.photoUrl" (load)=" photoLoading = false">
-        <mat-spinner class="photo-loader" diameter="100" *ngIf="photoLoading"></mat-spinner>
-      </mat-card-content>
-
-      <mat-card-header>
-        <mat-card-title>{{person.name}}, {{person.age}}</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-actions>
-        <button [disabled]="isMatch() || photoLoading" mat-raised-button color="primary" (click)="like(person)">Like</button>
-        <button *ngIf="!isMatch()" [disabled]="isMatch() || photoLoading" mat-raised-button color="primary" (click)="disLike(person)">Dislike</button>
-        <button *ngIf="isMatch()" [disabled]="photoLoading" mat-raised-button color="primary" (click)="skipPerson()">Ok</button>
-      </mat-card-actions>
-
-    </mat-card>
+    <app-person-card *ngIf="person; else restartTpl" [person]="person" (action)="action($event, person)"></app-person-card>
   </ng-container>
 </section>
 
@@ -37,19 +20,11 @@
 </ng-template>
 
 <ng-template #restartTpl>
-  <mat-card class="person-card">
-
-    <mat-card-header>
-      <mat-card-title>No new profiles!</mat-card-title>
-    </mat-card-header>
-
-    <mat-card-content>
-      You can restart search...
-    </mat-card-content>
-
+  <mat-card class="restart-card">
+    <mat-card-title>No new profiles!</mat-card-title>
+    <mat-card-content>You can restart search...</mat-card-content>
     <mat-card-actions class="restart-actions">
       <button mat-raised-button color="primary" (click)="restart()">Restart</button>
     </mat-card-actions>
   </mat-card>
-
 </ng-template>

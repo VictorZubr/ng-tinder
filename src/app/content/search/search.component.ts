@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from '../../defs/person';
 import { SearchService } from './search.service';
+import { Action } from '../../defs/action';
 
 @Component({
   selector: 'app-search',
@@ -15,8 +16,6 @@ export class SearchComponent implements OnInit {
   public person: Person | undefined;
 
   public personsLoading = false;
-
-  public photoLoading = false;
 
   constructor(
     private searchService: SearchService,
@@ -37,7 +36,6 @@ export class SearchComponent implements OnInit {
 
   public skipPerson() {
     this.person = this.persons.pop();
-    this.photoLoading = true;
   }
 
   public isMatch(): boolean {
@@ -56,5 +54,16 @@ export class SearchComponent implements OnInit {
       this.skipPerson();
       this.personsLoading = false;
     });
+  }
+
+  public action(action: Action, person: Person) {
+    switch (action) {
+      case 'like':
+        return this.like(person);
+      case 'dislike':
+        return this.disLike(person);
+      default:
+        return this.skipPerson();
+    }
   }
 }

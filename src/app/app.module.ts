@@ -21,6 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './content/header/header.component';
 import { SearchComponent } from './content/search/search.component';
 import { SettingsComponent } from './content/settings/settings.component';
+import { PersonCardComponent } from './content/search/person-card/person-card.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SettingsComponent } from './content/settings/settings.component';
     HeaderComponent,
     SearchComponent,
     SettingsComponent,
+    PersonCardComponent,
   ],
   imports: [
     BrowserModule,
