@@ -1,25 +1,25 @@
 <mat-toolbar color="primary">
-    <img height="30" src="https://www.topconpositioning.com/tcgn-static/images/logo.svg" alt="Topcon logo"/>
-    <span class="example-spacer"></span>
-    <ng-container *ngIf="(isHandset$ | async) === false">
-        <ng-container *ngTemplateOutlet="navigation" class="row-menu"></ng-container>
-    </ng-container>
-    <button type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            *ngIf="isHandset$ | async"
-            [matMenuTriggerFor]="menu">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
+  <img height="30" src="https://www.topconpositioning.com/tcgn-static/images/logo.svg" alt="Topcon logo"/>
+  <span class="example-spacer"></span>
+  <ng-container *ngIf="(isHandset$ | async) === false">
+    <ng-container *ngTemplateOutlet="navigation" class="row-menu"></ng-container>
+  </ng-container>
+  <button type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          *ngIf="isHandset$ | async"
+          [matMenuTriggerFor]="menu">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">
-    <ng-container *ngTemplateOutlet="navigation"></ng-container>
+  <ng-container *ngTemplateOutlet="navigation"></ng-container>
 </mat-menu>
 
 <ng-template #navigation>
-    <mat-nav-list [class.row-menu]="(isHandset$ | async) === false">
-        <a mat-button routerLink="/search">Search</a>
-        <a mat-button routerLink="/settings">Settings</a>
-    </mat-nav-list>
+  <mat-nav-list [class.row-menu]="(isHandset$ | async) === false">
+    <a mat-button routerLink="/search">Search</a>
+    <a mat-button routerLink="/settings">Settings</a>
+  </mat-nav-list>
 </ng-template>
