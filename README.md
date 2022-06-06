@@ -6,7 +6,7 @@ Simple serverless single page application like Tinder. All server requests are e
 
 Backend must provide next requests:
 
-#####Get profiles
+##### Get profiles
 * HTTP Method: GET
 * URL: '/profiles'
 * Response: array of objects
@@ -24,7 +24,7 @@ Backend must provide next requests:
 }
 ```
 
-#####Update profile to like
+##### Update profile to like
 * HTTP Method: POST
 * URL: '/profile/:id'
 * Payload: ```{"isFavorite": "true"}```
