@@ -44,6 +44,10 @@ export class SearchComponent implements OnInit {
     return Boolean(this.person?.status.isFavorite && this.person.status.isCandidate);
   }
 
+  public restart() {
+    this.ngOnInit();
+  }
+
   ngOnInit() {
     this.personsLoading = true;
     this.searchService.getPersons().subscribe((persons) => {

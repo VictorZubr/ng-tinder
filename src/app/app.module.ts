@@ -12,6 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { FormsModule } from '@angular/forms';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +44,9 @@ import { SettingsComponent } from './content/settings/settings.component';
     MatProgressBarModule,
     HttpClientModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
+    FormsModule,
+    NgxSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

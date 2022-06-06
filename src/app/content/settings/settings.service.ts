@@ -12,5 +12,13 @@ const DEFAULT_SETTINGS: Settings = {
   providedIn: 'root',
 })
 export class SettingsService {
-  settings: Settings = DEFAULT_SETTINGS;
+  private currentSettings: Settings = DEFAULT_SETTINGS;
+
+  get settings(): Settings {
+    return this.currentSettings;
+  }
+
+  set settings(settings: Settings) {
+    this.currentSettings = settings;
+  }
 }

@@ -21,6 +21,7 @@ export class ApiService {
   }
 
   public getPersons(): Observable<Array<Person>> {
+    this.persons = getPersons(this.settingsService.settings);
     return this.getPhotos().pipe(
       map((photos) => {
         this.persons = this.persons
