@@ -1,5 +1,10 @@
 import {
-  Component, EventEmitter, Input, OnChanges, Output,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
 } from '@angular/core';
 
 import { Person } from '../../../defs/person';
@@ -9,6 +14,7 @@ import { Action } from '../../../defs/action';
   selector: 'app-person-card',
   templateUrl: './person-card.component.html',
   styleUrls: ['./person-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonCardComponent implements OnChanges {
   @Input() person: Person | undefined;

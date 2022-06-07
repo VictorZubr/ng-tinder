@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
 import { Settings } from '../../defs/settings';
 import { SettingsService } from './settings.service';
@@ -7,6 +7,7 @@ import { SettingsService } from './settings.service';
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {
   public settings: Settings = this.settingsService.settings;

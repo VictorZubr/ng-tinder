@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { Person } from '../../defs/person';
 import { SearchService } from './search.service';
 import { Action } from '../../defs/action';
@@ -7,6 +12,7 @@ import { Action } from '../../defs/action';
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent implements OnInit {
   public persons: Array<Person> = [];
@@ -19,6 +25,7 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
+    private ref: ChangeDetectorRef,
   ) {}
 
   public like(person: Person) {
@@ -53,6 +60,7 @@ export class SearchComponent implements OnInit {
       this.total = persons.length;
       this.skipPerson();
       this.personsLoading = false;
+      this.ref.markForCheck();
     });
   }
 
