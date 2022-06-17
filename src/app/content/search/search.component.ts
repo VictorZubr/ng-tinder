@@ -1,9 +1,9 @@
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+  BehaviorSubject, endWith, from, Observable, switchMap, tap, zip,
+} from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { Person } from '../../defs/person';
 import { SearchService } from './search.service';
 import { Action } from '../../defs/action';
@@ -15,23 +15,21 @@ import { Action } from '../../defs/action';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent implements OnInit {
-  public persons: Array<Person> = [];
-
   public total = 0;
 
-  public person: Person | undefined;
+  public loader = false;
 
-  public personsLoading = false;
+  public persons$: Observable<Person | null> | null = null;
+
+  public skip$ = new BehaviorSubject<number>(1);
 
   constructor(
     private searchService: SearchService,
-    private ref: ChangeDetectorRef,
   ) {}
 
   public like(person: Person) {
     this.searchService.like(person.id).subscribe((updatedPerson) => {
-      this.person = updatedPerson;
-      if (!this.isMatch()) {
+      if (!SearchComponent.isMatch(updatedPerson)) {
         this.skipPerson();
       }
     });
@@ -41,27 +39,33 @@ export class SearchComponent implements OnInit {
     this.searchService.dislike(person.id).subscribe(() => this.skipPerson());
   }
 
-  public skipPerson() {
-    this.person = this.persons.pop();
+  public skipPerson(): void {
+    this.skip$.next(this.skip$.value + 1);
   }
 
-  public isMatch(): boolean {
-    return Boolean(this.person?.status.isFavorite && this.person.status.isCandidate);
+  public static isMatch(person: Person): boolean {
+    return Boolean(person.status.isFavorite && person.status.isCandidate);
   }
 
-  public restart() {
+  public restart(): void {
+    this.skip$.next(1);
     this.ngOnInit();
   }
 
   ngOnInit() {
-    this.personsLoading = true;
-    this.searchService.getPersons().subscribe((persons) => {
-      this.persons = persons;
-      this.total = persons.length;
-      this.skipPerson();
-      this.personsLoading = false;
-      this.ref.markForCheck();
-    });
+    this.loader = true;
+    const persons$ = this.searchService.getPersons()
+      .pipe(
+        tap((persons) => {
+          this.total = persons.length;
+          this.loader = false;
+        }),
+        switchMap((persons) => from(persons)),
+        endWith(null),
+      );
+
+    this.persons$ = zip(persons$, this.skip$)
+      .pipe(map(([person]) => person));
   }
 
   public action(action: Action, person: Person) {

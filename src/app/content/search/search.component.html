@@ -1,30 +1,24 @@
-<mat-card>
+<mat-card *ngIf="skip$ | async as progress">
   <mat-card-header>
-    <mat-card-title>{{total-persons.length}}/{{total}}</mat-card-title>
+    <mat-card-title>{{progress > total ? total : progress}}/{{total}}</mat-card-title>
   </mat-card-header>
 
-  <mat-progress-bar [value]="(total - persons.length) / total * 100"></mat-progress-bar>
+  <mat-progress-bar [value]="progress / total * 100"></mat-progress-bar>
 </mat-card>
 
 <section class="card-section">
-  <ng-container *ngIf="!personsLoading; else loadingTpl">
-    <app-person-card *ngIf="person; else restartTpl" [person]="person" (action)="action($event, person)"></app-person-card>
-  </ng-container>
-</section>
-
-<ng-template #loadingTpl>
-  <mat-card class="loader-card">
+  <mat-card class="loader-card" *ngIf="loader">
     <mat-card-title>Loading persons...</mat-card-title>
     <mat-spinner diameter="100"></mat-spinner>
   </mat-card>
-</ng-template>
 
-<ng-template #restartTpl>
-  <mat-card class="restart-card">
+  <app-person-card *ngIf="persons$ | async as person" [person]="person" (action)="action($event, person)"></app-person-card>
+
+  <mat-card class="restart-card" *ngIf="total && skip$.value > total">
     <mat-card-title>No new profiles!</mat-card-title>
     <mat-card-content>You can restart search...</mat-card-content>
     <mat-card-actions class="restart-actions">
       <button mat-raised-button color="primary" (click)="restart()">Restart</button>
     </mat-card-actions>
   </mat-card>
-</ng-template>
+</section>
