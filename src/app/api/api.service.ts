@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Observable, of, Subscriber } from 'rxjs';
+import {
+  Observable, of, Subscriber, tap,
+} from 'rxjs';
 
 import { Person } from '../defs/person';
 import { SettingsService } from '../content/settings/settings.service';
@@ -12,7 +14,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class ApiService {
-  persons = getPersons(this.settingsService.settings);
+  private persons: Array<Person> = [];
 
   constructor(
     private settingsService: SettingsService,
@@ -21,13 +23,13 @@ export class ApiService {
   }
 
   public getPersons(): Observable<Array<Person>> {
-    this.persons = getPersons(this.settingsService.settings);
+    const persons = getPersons(this.settingsService.settings);
     return this.getPhotos().pipe(
-      map((photos) => {
-        this.persons = this.persons
+      tap((photos) => {
+        this.persons = persons
           .map((person, index) => ({ ...person, photoUrl: photos[index]?.url }));
-        return this.persons.slice();
       }),
+      map(() => this.persons.slice()),
     );
   }
 

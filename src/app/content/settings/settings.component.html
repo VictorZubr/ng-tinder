@@ -10,13 +10,13 @@
       <fieldset>
         <legend>I'm looking for</legend>
 
-      <mat-radio-group class="sex-radio-group"
-                       [(ngModel)]="settings.searchSex"
-                       [ngModelOptions]="{standalone: true}"
-                       (ngModelChange)="settingsChange = true">
-        <mat-radio-button class="radio-button" [value]="'male'">Male</mat-radio-button>
-        <mat-radio-button class="radio-button" [value]="'female'">Female</mat-radio-button>
-      </mat-radio-group>
+        <mat-radio-group class="sex-radio-group"
+                         [(ngModel)]="settings.searchSex"
+                         [ngModelOptions]="{standalone: true}"
+                         (ngModelChange)="settingsChange = true">
+          <mat-radio-button class="radio-button" [value]="'male'">Male</mat-radio-button>
+          <mat-radio-button class="radio-button" [value]="'female'">Female</mat-radio-button>
+        </mat-radio-group>
       </fieldset>
 
       <fieldset>
