@@ -9,6 +9,7 @@ import {
 
 import { Person } from '../../../defs/person';
 import { Action } from '../../../defs/action';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-person-card',
